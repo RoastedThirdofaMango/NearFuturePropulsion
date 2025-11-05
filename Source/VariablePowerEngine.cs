@@ -242,6 +242,10 @@ namespace NearFuturePropulsion
             engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
             engine.atmosphereCurve.Add(1f, 100f);
             engine.atmosphereCurve.Add(4f, 5f);
+            //Iterate over keys in SavedFloatCurve, scale such that engine.atmosphereCurve.Evaluate(0f) == IspCurve.Evaluate(level), but preserve ratios
+            float IspRatio = IspCurve.Evaluate(level) / SavedFloatCurve.Evaluate(0f);
+            engine.atmosphereCurve = new FloatCurve();           
+            
 
          
             //RecalculateRatios(curPowerUse, engine.atmosphereCurve.Evaluate((float)vessel.staticPressurekPa));
